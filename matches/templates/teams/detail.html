@@ -1,0 +1,27 @@
+
+<div style="display:block;text-align:left">
+<img src="{{ team.logo_uri }}" alt="<Team Image>" height="71" width="71">
+    <font size="71">{{ team.name }}</font>
+</div>
+<h3>Players list in this team:</h3>
+<ul>
+{% for player in team.player_set.all %}
+    <li>
+        <img src="{{ player.image_uri }}" alt="Player Image" height="42" width="42">
+        {{ player.last_name }} {{ player.first_name }}
+    </li>
+{% empty %}
+    No players currently exist.
+{% endfor %}
+</ul>
+
+<h3>Matches list for this team:</h3>
+<ul>
+{% for match in team.matches_set.all %}
+    <li>
+        {{ match.match_number}}
+    </li>
+{% empty %}
+    No match for this team.
+{% endfor %}
+</ul>

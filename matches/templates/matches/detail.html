@@ -1,0 +1,31 @@
+
+<h1>Welcome to the match number: {{ match.match_number }}</h1>
+
+<h3>Details:</h3>
+
+<ul>
+    <li>
+        Teams Playing:
+        <ul>
+            {% for team in match.teams.all %}
+                <li>{{team.name}}</li>
+            {% empty %}
+                 No teams playing yet.
+            {% endfor %}
+        </ul>
+    </li>
+    <li>
+        Match Number: {{ match.match_number }}
+    </li>
+    <li>
+        Match Stadium: {{ match.match_stadium }}
+    </li>
+    <li>
+        Match Location: {{ match.match_location }}
+    </li>
+    <li>
+        Match Tournament: {{ match.match_tournament }}
+    </li>
+</ul>
+
+<a href="'cricpro/matches_create'">Setup another match</a>

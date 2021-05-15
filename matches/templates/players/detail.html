@@ -1,0 +1,27 @@
+<div style="display:block;text-align:left">
+<img src="{{ player.image_uri }}" alt="<Player Image>" height="71" width="71"><br>
+    <font size="71">{{ player.last_name }} {{ player.first_name }}</font><br>
+</div>
+<br>
+<b>Jersey Number: {{ player.jersey_number }}</b>
+<br>
+<i>Country: {{ player.country }}</i>
+<br>
+
+<h3>Teams this player belongs to:</h3>
+<ul>
+{% for team in player.teams.all %}
+    <li>{{team.name}}</li>
+{% empty %}
+    No teams associated.
+{% endfor %}
+</ul>
+
+<h3>Other information about this player:</h3>
+<ul>
+{% for history in player.playerhistory_set.all %}
+    <li>{{ history.key }}: {{ history.value }}</li>
+{% empty %}
+    No other information associated.
+{% endfor %}
+</ul>

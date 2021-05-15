@@ -1,0 +1,57 @@
+<h1>The Cricpro App</h1>
+
+<a href="teams/">Teams List</a>
+<br>
+<a href="players/">Players List</a>
+
+<h2>Points table</h2>
+<ul>
+    {% for point in points %}
+    Team <b>{{ point.team.name }}:</b>
+    Points <b>{{ point.points}}</b>
+    <br>
+    {% empty %}
+    No data available.
+    {% endfor %}
+</ul>
+
+<h2>Matches</h2>
+<a href="matches/">Set up a match</a>
+
+<ul>
+{% for match in matches %}
+    <li>
+        Match Number <b><a href="'matches_detail'">{{ match.match_number }}</a>  </b>
+        <ul>
+            <li>
+            Teams playing this match:
+            {% for team in match.teams.all %}
+            {{ forloop.counter }}. Team <b>{{ team.name }}</b>
+            {% empty %}
+                No teams playing yet.
+            {% endfor %}
+            </li>
+        </ul>
+    </li>
+{% empty %}
+    <p>No match exist.</p>
+{% endfor %}
+</ul>
+
+<div class="">
+    <span class="">
+        {% if matches.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ matches.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="">
+            This is the page #{{ matches.number }} out of {{ matches.paginator.num_pages }}
+        </span>
+
+        {% if matches.has_next %}
+                <a href="?page={{ matches.next_page_number }}">next</a>
+                <a href="?page={{ matches.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
